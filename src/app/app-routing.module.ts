@@ -4,7 +4,10 @@ import { IndexComponent } from './index/index.component';
 
 const routes: Routes = [
 
-  {path: 'dogin',
+  {path: 'home',
+  component: IndexComponent},
+  
+  {path: '**',
   component: IndexComponent}
 
 ];

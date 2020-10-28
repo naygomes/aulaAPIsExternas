@@ -1,2 +1,24 @@
-<img src="{{catImage}}">
-<img src="{{dogImage}}">
+<div class="section">
+    <div class="card">
+        <img class="photo" src="{{dogImage}}">
+        <div class="buttons">
+            <a class="like" (click)="like(); reloadDog()">
+                <label> LIKE </label>
+            </a>
+            <a class="unlike" (click)="unlike(); reloadDog()">
+                <label> UNLIKE </label>
+            </a>
+        </div>
+    </div>
+    <div class="card">
+        <img class="photo" src="{{catImage}}">
+        <div class="buttons">
+            <a class="like" (click)="like(); reloadCat()">
+                <label> LIKE </label>
+            </a>
+            <a class="unlike" (click)="unlike(); reloadCat()">
+                <label> UNLIKE </label>
+            </a>
+        </div>
+    </div>
+</div>

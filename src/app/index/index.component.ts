@@ -10,18 +10,19 @@ import { ImageService } from '../image.service';
 export class IndexComponent implements OnInit {
 
   dogImage;
-  catImage;
+  catImage: string;
+  catImageId: string;
+  form;
 
   constructor( public imageService: ImageService ) { }
 
   ngOnInit(): void {
     this.getCatImage();
-    this.getImage();
-  
+    this.getDogImage();
   }
 
-  getImage() {
-    this.imageService.getImage().subscribe(
+  getDogImage() {
+    this.imageService.getDogImage().subscribe(
       (res) => {
       this.dogImage = res.message;
     });
@@ -30,8 +31,42 @@ export class IndexComponent implements OnInit {
   getCatImage() {
     this.imageService.getCatImage().subscribe(
       (res) => {
-        console.log(res);
       this.catImage = res[0].url;
+      this.catImageId = res[0].id;
     });
+  }
+
+  like() {
+    this.form = {
+                  image_id : this.catImageId,
+                  value : 1
+                }
+
+    this.imageService.createVote(this.form).subscribe(
+      (res) => {
+        console.log(res);
+    });
+  }
+
+  unlike() {
+    this.form = {
+                  image_id : this.catImageId,
+                  value : 0
+                }
+
+    this.imageService.createVote(this.form).subscribe(
+      (res) => {
+        console.log(res);
+    });
+  }
+
+  reloadDog() {
+    this.getDogImage();
+    console.log('doguinho');
+  }
+
+  reloadCat() {
+    this.getCatImage();
+    console.log('gatinho');
   }
 }
